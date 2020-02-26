@@ -3,7 +3,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const compression = require("compression");
 require("express-async-errors");
-const { NotFoundMiddleware, ErrorMiddleware } = require('../middlewares');
+const { NotFoundMiddleware, ErrorMiddleware } = require("../middlewares");
 
 module.exports = function({ HomeRoutes }) {
   const router = express.Router();
@@ -19,7 +19,6 @@ module.exports = function({ HomeRoutes }) {
   apiRoutes.use("/home", HomeRoutes);
 
   router.use("/v1/api", apiRoutes);
-
   router.use(NotFoundMiddleware);
   router.use(ErrorMiddleware);
 
