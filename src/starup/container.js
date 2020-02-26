@@ -21,7 +21,12 @@ const {
 } = require("../controllers");
 
 // routes
-const { HomeRoutes } = require("../routes/index.routes");
+const {
+  HomeRoutes,
+  UserRoutes,
+  IdeaRoutes,
+  CommentRoutes
+} = require("../routes/index.routes");
 const Routes = require("../routes");
 
 // models
@@ -52,10 +57,15 @@ container
     HomeController: asClass(HomeController.bind(HomeController)).singleton(),
     UserController: asClass(UserController.bind(UserController)).singleton(),
     IdeaController: asClass(IdeaController.bind(IdeaController)).singleton(),
-    CommentController: asClass(CommentController.bind(CommentController)).singleton()
+    CommentController: asClass(
+      CommentController.bind(CommentController)
+    ).singleton()
   })
   .register({
-    HomeRoutes: asFunction(HomeRoutes).singleton()
+    HomeRoutes: asFunction(HomeRoutes).singleton(),
+    UserRoutes: asFunction(UserRoutes).singleton(),
+    IdeaRoutes: asFunction(IdeaRoutes).singleton(),
+    CommentRoutes: asFunction(CommentRoutes).singleton()
   })
   .register({
     User: asValue(User),
