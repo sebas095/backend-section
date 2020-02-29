@@ -5,7 +5,6 @@ module.exports = function(duration) {
   return (req, res, next) => {
     const key = CACHE_KEY + req.originalUrl || req.url;
     const cacheBody = mcache.get(key); 
-    console.log("KEY: " + key);
 
     if (cacheBody) {
       return res.send(JSON.parse(cacheBody));
