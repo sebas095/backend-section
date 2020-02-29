@@ -1,3 +1,4 @@
+const { CacheDeleteHelper } = require("../helpers");
 let _ideaservice = null;
 
 class IdeaController {
@@ -20,6 +21,7 @@ class IdeaController {
   async create(req, res) {
     const { body } = req;
     const createdIdea = await _ideaservice.create(body);
+    CacheDeleteHelper(req, false);
     return res.status(201).send(createdIdea);
   }
 
@@ -27,12 +29,14 @@ class IdeaController {
     const { body } = req;
     const { ideaId } = req.params;
     const updatedIdea = await _userservice.update(ideaId, body);
+    CacheDeleteHelper(req);
     return res.send(updatedIdea);
   }
 
   async delete(req, res) {
     const { ideaId } = req.params;
     const deletedIdea = await _userservice.delete(ideaId);
+    CacheDeleteHelper(req);
     return res.send(deletedIdea);
   }
 
@@ -45,12 +49,14 @@ class IdeaController {
   async upvoteIdea(req, res) {
     const { ideaId } = req.params;
     const idea = await _ideaservice.upvoteIdea(ideaId);
+    CacheDeleteHelper(req);
     return res.send(idea);
   }
 
   async downvoteIdea(req, res) {
     const { ideaId } = req.params;
     const idea = await _ideaservice.downvoteIdea(ideaId);
+    CacheDeleteHelper(req);
     return res.send(idea);
   }
 }

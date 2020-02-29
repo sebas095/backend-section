@@ -1,3 +1,4 @@
+const { CacheDeleteHelper } = require("../helpers");
 let _authService = null;
 
 class AuthController {
@@ -8,6 +9,7 @@ class AuthController {
   async signUp(req, res) {
     const { body } = req;
     const createUser = await _authService.signUp(body);
+    CacheDeleteHelper(req, false, "user", 2);
     return res.status(201).send(createUser);
   }
 

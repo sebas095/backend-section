@@ -1,3 +1,4 @@
+const { CacheDeleteHelper } = require("../helpers");
 let _userservice = null;
 
 class UserController {
@@ -21,12 +22,14 @@ class UserController {
     const { body } = req;
     const { userId } = req.params;
     const updatedUser = await _userservice.update(userId, body);
+    CacheDeleteHelper(req);
     return res.send(updatedUser);
   }
 
   async delete(req, res) {
     const { userId } = req.params;
     const deletedUser = await _userservice.delete(userId);
+    CacheDeleteHelper(req);
     return res.send(deletedUser);
   }
 }
