@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const compression = require("compression");
+const logger = require("morgan");
 require("express-async-errors");
 const { NotFoundMiddleware, ErrorMiddleware } = require("../middlewares");
 const swaggerUI = require("swagger-ui-express");
@@ -17,6 +18,7 @@ module.exports = function({ HomeRoutes, UserRoutes, IdeaRoutes, CommentRoutes, A
     .use(express.json())
     .use(cors())
     .use(helmet())
+    .use(logger("dev"))
     .use(compression())
 
   apiRoutes.use("/home", HomeRoutes);
