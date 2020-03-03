@@ -22,7 +22,7 @@ module.exports = function({
   // default middlewares
   apiRoutes
     .use(express.json())
-    //.use(cors())
+    .use(cors())
     .use(helmet())
     .use(logger("dev"))
     .use(compression());
