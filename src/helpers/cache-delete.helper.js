@@ -26,6 +26,7 @@ module.exports = function(req, flag = true, replace = "", index = 1) {
     url += replace;
   }
 
+  url += url[url.length - 1] != "/" ? "/" : "";
   const key = CACHE_KEY + url;
   mcache.del(key);
 };

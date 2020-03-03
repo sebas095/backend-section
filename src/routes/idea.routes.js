@@ -1,5 +1,9 @@
 const { Router } = require("express");
-const { AuthMiddleware, ParseIntMiddleware, CacheMiddleware } = require("../middlewares");
+const {
+  AuthMiddleware,
+  ParseIntMiddleware,
+  CacheMiddleware
+} = require("../middlewares");
 const { CACHE_TIME } = require("../helpers");
 
 module.exports = function({ IdeaController }) {
@@ -7,7 +11,7 @@ module.exports = function({ IdeaController }) {
 
   router.get(
     "/",
-    [ParseIntMiddleware, CacheMiddleware(CACHE_TIME.ONE_HOUR)],
+    [ParseIntMiddleware /*, CacheMiddleware(CACHE_TIME.ONE_HOUR)*/],
     IdeaController.getAll
   );
   router.get("/:ideaId", IdeaController.get);
