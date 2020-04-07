@@ -1,4 +1,4 @@
-const BaseService = require("./comment.service");
+const BaseService = require("./base.service");
 
 class HomeService extends BaseService {
   index() {
